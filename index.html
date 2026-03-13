@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Welcome to Judy Couture</title>
+    <link rel="stylesheet" href="styles/style.css">
+</head>
+<body>
+
+    <header>
+        <div class="logo">
+            <img src="images/logo2.PNG" alt="Judy Couture Logo">
+            <span>JUDY COUTURE</span>
+        </div>
+        <nav>
+            <ul>
+                <li><a href="index.html">Home</a></li>
+                <li><a href="products.html">Shop</a></li> 
+                <li><a href="contact.html">Contact</a></li>
+                <li><a href="checkout.html" id="cart-button">Cart 🛒 (<span id="cart-count">0</span>)</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <section class="hero">
+        <h1>Welcome to Judy Couture</h1>
+        <p>Find the best products at the best prices</p>
+        <a href="products.html" class="shop-button">Shop Now</a>
+    </section>
+
+    <section class="products">
+        <h2>Featured Products</h2>
+        <div class="product-grid">
+            <div class="product-card">
+                <img src="images/product1.jpg" alt="Hoodie">
+                <h3>Hoodie</h3>
+                <p>£19.99</p>
+                <button class="add-to-cart" data-name="Hoodie" data-price="19.99">Add to Cart</button>
+            </div>
+
+            <div class="product-card">
+                <img src="images/product2.jpg" alt="T-Shirt">
+                <h3>T-Shirt</h3>
+                <p>£24.99</p>
+                <button class="add-to-cart" data-name="T-Shirt" data-price="24.99">Add to Cart</button>
+            </div>
+        </div>
+    </section>
+
+    <!-- Cart Modal -->
+    <div id="cart-modal" class="cart-modal">
+        <div class="cart-content">
+            <span id="close-cart" class="close-cart">&times;</span>
+            <h2>Your Cart</h2>
+            <ul id="cart-items"></ul>
+            <p><strong>Total: £<span id="cart-total">0.00</span></strong></p>
+            <a href="checkout.html" class="checkout-button">Proceed to Checkout</a>
+        </div>
+    </div>
+
+    <footer>
+        <p>&copy; 2025 Judy Couture. All rights reserved.</p>
+    </footer>
+
+    <script src="scripts/script.js"></script>
+</body>
+</html>

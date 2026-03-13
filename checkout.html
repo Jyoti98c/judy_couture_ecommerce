@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Your Shopping Cart - Judy Couture</title>
+    <link rel="stylesheet" href="styles/style.css">
+</head>
+<body>
+
+    <header>
+        <div class="logo">
+            <img src="images/logo2.PNG" alt="Judy Couture Logo">
+            <span>JUDY COUTURE</span>
+        </div>
+        <nav>
+            <ul>
+                <li><a href="index.html">Home</a></li>
+                <li><a href="products.html">Shop</a></li>
+                <li><a href="contact.html">Contact</a></li>
+                <li><a href="checkout.html" id="cart-button">Cart 🛒 (<span id="cart-count">0</span>)</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main class="cart-container">
+        <h2>Your Shopping Cart</h2>
+        <h3>Order Summary</h3>
+        <ul id="order-summary"></ul>
+        <div id="cart-items"></div>
+        <h3>Total: £<span id="cart-total">0.00</span></h3>
+        <button onclick="clearCart()">Clear Cart</button>
+        <a href="products.html">
+            <button>Continue Shopping</button>
+            </a>
+
+        <h2>Choose Payment Method</h2>
+        <div>
+            <input type="radio" id="credit-card-option" name="payment-method" checked>
+            <label for="credit-card-option">Credit Card</label>
+
+            <input type="radio" id="paypal-option" name="payment-method">
+            <label for="paypal-option">PayPal</label>
+        </div>
+
+        <!-- Credit Card Payment Form -->
+        <section id="credit-card-section">
+            <h3>Enter Payment Details</h3>
+            <form id="payment-form">
+                <label for="fullname">Full Name</label>
+                <input type="text" id="fullname" name="fullname" placeholder="John Doe" required>
+
+                <label for="cardnumber">Card Number</label>
+                <input type="text" id="cardnumber" name="cardnumber" placeholder="1234 5678 9012 3456" required maxlength="19">
+
+                <label for="expdate">Expiration Date</label>
+                <input type="month" id="expdate" name="expdate" required>
+
+                <label for="cvv">CVV</label>
+                <input type="text" id="cvv" name="cvv" placeholder="123" required maxlength="3">
+
+                <label for="address">Billing Address</label>
+                <textarea id="address" name="address" placeholder="123 Main Street, City, Country" required></textarea>
+
+                <button type="submit">Pay Now</button>
+            </form>
+        </section>
+    </main>
+
+    <footer>
+        <p>&copy; 2025 Judy Couture. All rights reserved.</p>
+    </footer>
+
+    <script>
+        // Load cart from localStorage and display it on the cart page
+        function loadCart() {
+            let cart = JSON.parse(localStorage.getItem('cart')) || [];
+            let cartItemsContainer = document.getElementById('cart-items');
+            let orderSummary = document.getElementById("order-summary");
+            let cartTotal = document.getElementById('cart-total');
+            cartItemsContainer.innerHTML = ''; // Clear previous cart items
+            let total = 0;
+
+            if (cart.length === 0) {
+                cartItemsContainer.innerHTML = "<p>Your cart is empty.</p>";
+            } else {
+                cart.forEach((item, index) => {
+                    orderSummary.innerHTML += `<li>${item.name} - ${item.price}</li>`;
+                    total += parseFloat(item.price.replace('£', ''));
+                    let itemElement = document.createElement('div');
+                    itemElement.classList.add('cart-item');
+                    itemElement.innerHTML = `
+                        <p>${item.name} - ${item.price}</p>
+                        <button onclick="removeFromCart(${index})">Remove</button>
+                    `;
+                    cartItemsContainer.appendChild(itemElement);
+                });
+            }
+
+            // Update the total
+            cartTotal.innerText = total.toFixed(2);
+            updateCartCount();
+        }
+
+        // Remove item from the cart
+        function removeFromCart(index) {
+            let cart = JSON.parse(localStorage.getItem('cart')) || [];
+            cart.splice(index, 1); // Remove item
+            localStorage.setItem('cart', JSON.stringify(cart)); // Update cart in localStorage
+            loadCart(); // Reload cart
+        }
+
+        // Clear the entire cart
+        function clearCart() {
+            localStorage.removeItem('cart');
+            loadCart(); // Reload cart
+        }
+
+        // Update the cart count in the navigation
+        function updateCartCount() {
+            let cart = JSON.parse(localStorage.getItem('cart')) || [];
+            document.getElementById("cart-count").innerText = cart.length;
+        }
+
+        // Function to handle payment form submission
+        function handlePayment(event) {
+            event.preventDefault(); // Prevent the default form submission
+
+            // Simulate payment processing (this could be an API call)
+            setTimeout(function() {
+                // Clear cart after successful payment
+                localStorage.removeItem('cart');
+                loadCart(); // Reload the cart
+                alert("Payment successful! Your cart has been cleared.");
+                // Optionally redirect to another page, e.g., confirmation page
+                window.location.href = 'thank-you.html'; // Example redirection
+            }, 2000); // Simulate a 2-second payment processing time
+        }
+
+        // Attach the payment handler to the payment form
+        document.getElementById('payment-form').addEventListener('submit', handlePayment);
+
+        // Load cart when the page is loaded
+        window.addEventListener("load", loadCart);
+        document.getElementById("payment-form").addEventListener("submit", function(e){
+
+        let card = document.getElementById("cardnumber").value;
+
+            if(card.length < 16){
+            alert("Card number must be 16 digits");
+            e.preventDefault();
+            }
+            });
+    </script>
+</body>
+</html>

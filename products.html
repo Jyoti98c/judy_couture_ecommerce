@@ -1,0 +1,194 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Shop - Judy Couture</title>
+    <link rel="stylesheet" href="styles/style.css">
+</head>
+<body>
+
+    <header>
+        <div class="logo">
+            <img src="images/logo2.PNG" alt="Judy Couture Logo">
+            <span>JUDY COUTURE</span>
+        </div>
+        <nav>
+            <ul>
+                <li><a href="index.html">Home</a></li>
+                <li><a href="products.html">Shop</a></li>
+                <li><a href="contact.html">Contact</a></li>
+                <li><a href="checkout.html" id="cart-button">Cart 🛒 (<span id="cart-count">0</span>)</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <!-- Categories Section -->
+    <div class="categories">
+        <ul>
+            <li><a href="#" onclick="filterCategory('all')">All</a></li>
+            <li><a href="#" onclick="filterCategory('men')">Men</a></li>
+            <li><a href="#" onclick="filterCategory('women')">Women</a></li>
+            <li><a href="#" onclick="filterCategory('accessories')">Accessories</a></li>
+        </ul>
+    </div>
+
+    <main>
+        <h2>Shop Our Collection</h2>
+        <input type="text" id="search" placeholder="Search products..." onkeyup="searchProducts()">
+        <div class="grid" id="product-list">
+            <!-- Men Category Product -->
+            <article class="product" data-category="men" data-name="Men's Jacket" data-price="89.99" data-img="images/j.jpg">
+                <figure>
+                    <img src="images/j.JPG" alt="Men's Jacket">
+                    <figcaption>Men's Jacket - £89.99</figcaption>
+                </figure>
+                <button onclick="viewProduct('Men\'s Jacket')">View Product</button>
+            </article>
+
+            <article class="product" data-category="men" data-name="Men's Shoes" data-price="69.99" data-img="images/s.jpg">
+                <figure>
+                    <img src="images/s.JPG" alt="Men's Shoes">
+                    <figcaption>Men's Shoes - £69.99</figcaption>
+                </figure>
+                <button onclick="viewProduct('Men\'s Shoes')">View Product</button>
+            </article>
+
+            <article class="product" data-category="men" data-name="Men's Hoodie" data-price="49.99" data-img="images/hoodie.jpg">
+                <figure>
+                    <img src="images/hoodie.jpg" alt="Men's Hoodie">
+                    <figcaption>Men's Hoodie - £49.99</figcaption>
+                </figure>
+                <button onclick="viewProduct('Men\'s Hoodie')">View Product</button>
+            </article>
+            
+            <article class="product" data-category="men" data-name="Men's Jeans" data-price="59.99" data-img="images/jeans.jpg">
+                <figure>
+                    <img src="images/jeans.jpg" alt="Men's Jeans">
+                    <figcaption>Men's Jeans - £59.99</figcaption>
+                </figure>
+                <button onclick="viewProduct('Men\'s Jeans')">View Product</button>
+            </article>
+
+            <!-- Women Category Product -->
+            <article class="product" data-category="women" data-name="Women's Dress" data-price="59.99" data-img="images/d.jpg">
+                <figure>
+                    <img src="images/d.JPG" alt="Women's Dress">
+                    <figcaption>Women's Dress - £59.99</figcaption>
+                </figure>
+                <button onclick="viewProduct('Women\'s Dress')">View Product</button>
+            </article>
+
+            <article class="product" data-category="women" data-name="Women's Heels" data-price="49.99" data-img="images/h.jpg">
+                <figure>
+                    <img src="images/h.JPG" alt="Women's Heels">
+                    <figcaption>Women's Heels - £49.99</figcaption>
+                </figure>
+                <button onclick="viewProduct('Women\'s Heels')">View Product</button>
+            </article>
+
+            <article class="product" data-category="women" data-name="Women's Jacket" data-price="79.99" data-img="images/wjacket.jpg">
+                <figure>
+                    <img src="images/wjacket.jpg" alt="Women's Jacket">
+                    <figcaption>Women's Jacket - £79.99</figcaption>
+                </figure>
+                <button onclick="viewProduct('Women\'s Jacket')">View Product</button>
+            </article>
+            
+            <article class="product" data-category="women" data-name="Women's Sneakers" data-price="69.99" data-img="images/wsneakers.jpg">
+                <figure>
+                    <img src="images/wsneakers.jpg" alt="Women's Sneakers">
+                    <figcaption>Women's Sneakers - £69.99</figcaption>
+                </figure>
+                <button onclick="viewProduct('Women\'s Sneakers')">View Product</button>
+            </article>
+
+            <!-- Accessories Category Product -->
+            <article class="product" data-category="accessories" data-name="Luxury Watch" data-price="129.99" data-img="images/w.jpg">
+                <figure>
+                    <img src="images/w.JPG" alt="Luxury Watch">
+                    <figcaption>Luxury Watch - £129.99</figcaption>
+                </figure>
+                <button onclick="viewProduct('Luxury Watch')">View Product</button>
+            </article>
+
+            <article class="product" data-category="accessories" data-name="Designer Handbag" data-price="149.99" data-img="images/p.jpg">
+                <figure>
+                    <img src="images/p.jpg" alt="Designer Handbag">
+                    <figcaption>Designer Handbag - £149.99</figcaption>
+                </figure>
+                <button onclick="viewProduct('Designer Handbag')">View Product</button>
+            </article>
+
+            <article class="product" data-category="accessories" data-name="Sunglasses" data-price="29.99" data-img="images/sunglasses.jpg">
+                <figure>
+                    <img src="images/sunglasses.jpg" alt="Sunglasses">
+                    <figcaption>Sunglasses - £29.99</figcaption>
+                </figure>
+                <button onclick="viewProduct('Sunglasses')">View Product</button>
+            </article>
+            
+            <article class="product" data-category="accessories" data-name="Leather Belt" data-price="24.99" data-img="images/belt.jpg">
+                <figure>
+                    <img src="images/belt.jpg" alt="Leather Belt">
+                    <figcaption>Leather Belt - £24.99</figcaption>
+                </figure>
+                <button onclick="viewProduct('Leather Belt')">View Product</button>
+            </article>
+        </div>
+    </main>
+
+    <footer>
+        <p>&copy; 2025 Judy Couture. All rights reserved.</p>
+    </footer>
+
+    <script>
+        function viewProduct(product) {
+            window.location.href = `product-detail.html?product=${encodeURIComponent(product)}`;
+        }
+
+        // Filter products based on category
+        function filterCategory(category) {
+            const products = document.querySelectorAll('.product');
+            products.forEach(product => {
+                // If the selected category is 'all', show all products
+                if (category === 'all') {
+                    product.style.display = 'block';
+                } 
+                // If the product category matches the selected category, show it
+                else if (product.getAttribute('data-category') === category) {
+                    product.style.display = 'block';
+                } 
+                // Otherwise, hide the product
+                else {
+                    product.style.display = 'none';
+                }
+            });
+        }
+    </script>
+    <script>
+
+        function searchProducts(){
+        
+        let input = document.getElementById("search").value.toLowerCase();
+        let products = document.querySelectorAll(".product");
+        
+        products.forEach(product => {
+        
+        let name = product.getAttribute("data-name").toLowerCase();
+        
+        if(name.includes(input)){
+        product.style.display = "block";
+        }
+        else{
+        product.style.display = "none";
+        }
+        
+        });
+        
+        }
+        
+        </script>
+
+</body>
+</html>

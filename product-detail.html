@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Product Details - Judy Couture</title>
+    <link rel="stylesheet" href="styles/style.css">
+</head>
+<body>
+
+    <header>
+        <div class="logo">
+            <img src="images/logo2.PNG" alt="Judy Couture Logo">
+            <span>JUDY COUTURE</span>
+        </div>
+        <nav>
+            <ul>
+                <li><a href="index.html">Home</a></li>
+                <li><a href="products.html">Shop</a></li>
+                <li><a href="contact.html">Contact</a></li>
+                <li><a href="checkout.html" id="cart-button">Cart 🛒 (<span id="cart-count">0</span>)</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <section class="product-detail">
+        <div class="product-image">
+            <img id="product-img" src="images/default.jpg" alt="Product Image">
+        </div>
+        <div class="product-info">
+            <h1 id="product-name">Product Name</h1>
+            <p class="price" id="product-price">£0.00</p>
+            <p id="product-description">Product description goes here.</p>
+            <h3>Rate this product</h3>
+        <div id="rating">
+        <span onclick="rate(1)">⭐</span>
+        <span onclick="rate(2)">⭐</span>
+        <span onclick="rate(3)">⭐</span>
+        <span onclick="rate(4)">⭐</span>
+        <span onclick="rate(5)">⭐</span>
+        </div>
+
+        <p id="rating-message"></p>
+            <label>Quantity:</label>
+            <input type="number" id="quantity" value="1" min="1">
+            <button class="add-to-cart" id="add-to-cart-btn">Add to Cart</button>
+        </div>
+    </section>
+
+    <footer>
+        <p>&copy; 2025 Judy Couture. All rights reserved.</p>
+    </footer>
+
+    <script>
+        // Define product data
+        const productData = {
+            "Men's Jacket": {
+                name: "Men's Jacket",
+                price: "£89.99",
+                img: "images/j.JPG",
+                description: "This is a stylish men's jacket for all seasons."
+            },
+            "Men's Shoes": {
+                name: "Men's Shoes",
+                price: "£69.99",
+                img: "images/s.JPG",
+                description: "Comfortable and fashionable shoes for everyday wear."
+            },
+            "Men's Hoodie": {
+                name: "Men's Hoodie",
+                price: "£49.99",
+                img: "images/hoodie.jpg",
+                description: "Comfortable hoodie perfect for casual wear."
+            },
+            "Men's Jeans": {
+                name: "Men's Jeans",
+                price: "£59.99",
+                img: "images/jeans.jpg",
+                description: "Classic denim jeans suitable for everyday style."
+            },
+
+            "Women's Dress": {
+                name: "Women's Dress",
+                price: "£59.99",
+                img: "images/d.JPG",
+                description: "Elegant dress for all occasions."
+            },
+            "Women's Heels": {
+                name: "Women's Heels",
+                price: "£49.99",
+                img: "images/h.JPG",
+                description: "Chic high heels to complete your outfit."
+            },
+            "Women's Jacket": {
+                name: "Women's Jacket",
+                price: "£79.99",
+                img: "images/wjacket.jpg",
+                description: "Stylish women's jacket for colder weather."
+            },
+            "Women's Sneakers": {
+                name: "Women's Sneakers",
+                price: "£69.99",
+                img: "images/wsneakers.jpg",
+                description: "Comfortable sneakers designed for everyday use."
+            },
+
+            "Luxury Watch": {
+                name: "Luxury Watch",
+                price: "£129.99",
+                img: "images/w.JPG",
+                description: "A luxurious timepiece with timeless design."
+            },
+            "Designer Handbag": {
+                name: "Designer Handbag",
+                price: "£149.99",
+                img: "images/p.JPG",
+                description: "A stylish designer handbag made of premium materials."
+            },
+            "Sunglasses": {
+                name: "Sunglasses",
+                price: "£29.99",
+                img: "images/sunglasses.jpg",
+                description: "Trendy sunglasses with UV protection."
+            },
+            "Leather Belt": {
+                name: "Leather Belt",
+                price: "£24.99",
+                img: "images/belt.jpg",
+                description: "Premium leather belt for formal or casual outfits."
+            }
+        };
+
+        document.addEventListener("DOMContentLoaded", function () {
+            // Get the product from the URL
+            const params = new URLSearchParams(window.location.search);
+            const productName = params.get("product");
+
+            if (productData[productName]) {
+                const product = productData[productName];
+                // Update the page with the product's details
+                document.getElementById("product-img").src = product.img;
+                document.getElementById("product-name").textContent = product.name;
+                document.getElementById("product-price").textContent = product.price;
+                document.getElementById("product-description").textContent = product.description;
+            } else {
+                document.querySelector(".product-info").innerHTML = "<h1>Product Not Found</h1>";
+            }
+
+            // Add to Cart Button
+            const addToCartButton = document.getElementById("add-to-cart-btn");
+            addToCartButton.addEventListener("click", function () {
+                if (productName && productData[productName]) {
+                    const product = productData[productName];
+                    // Get cart from localStorage
+                    let cart = JSON.parse(localStorage.getItem("cart")) || [];
+                    cart.push(product);
+                    localStorage.setItem("cart", JSON.stringify(cart));
+
+                    // Update the cart count
+                    updateCartCount();
+                }
+            });
+        });
+
+        // Update the cart count
+        function updateCartCount() {
+            const cart = JSON.parse(localStorage.getItem("cart")) || [];
+            document.getElementById("cart-count").textContent = cart.length;
+        }
+
+        
+        window.addEventListener("load", updateCartCount);
+
+        function rate(stars){
+
+            localStorage.setItem("productRating", stars);
+
+            document.getElementById("rating-message").innerText =
+            "You rated this product " + stars + " stars";
+        }
+    </script>
+
+</body>
+</html>

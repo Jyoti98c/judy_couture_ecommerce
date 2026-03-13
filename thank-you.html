@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Thank You - Judy Couture</title>
+    <link rel="stylesheet" href="styles/style.css">
+</head>
+<body>
+
+    <header>
+        <div class="logo">
+            <img src="images/logo2.PNG" alt="Judy Couture Logo">
+            <span>JUDY COUTURE</span>
+        </div>
+        <nav>
+            <ul>
+                <li><a href="index.html">Home</a></li>
+                <li><a href="products.html">Shop</a></li>
+                <li><a href="contact.html">Contact</a></li>
+                <li><a href="checkout.html" id="cart-button">Cart 🛒 (<span id="cart-count">0</span>)</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main class="thank-you-container">
+        <h2>Thank You for Your Purchase!</h2>
+        <p>Your payment was successful. We appreciate your order!</p>
+
+        <h3>Order Summary</h3>
+        <div id="order-summary">
+            <!-- Order summary will be displayed here -->
+        </div>
+
+        <p>Your order will be processed and shipped to the provided address shortly.</p>
+
+        <a href="products.html" class="button">Continue Shopping</a>
+        <a href="index.html" class="button">Back to Home</a>
+        
+    </main>
+
+    <footer>
+        <p>&copy; 2025 Judy Couture. All rights reserved.</p>
+    </footer>
+
+    <script>
+        // Function to load the order summary from localStorage
+        function loadOrderSummary() {
+            let cart = JSON.parse(localStorage.getItem('cart')) || [];
+            let orderSummaryContainer = document.getElementById('order-summary');
+            let total = 0;
+
+            if (cart.length === 0) {
+                orderSummaryContainer.innerHTML = "<p>Your cart was empty. Nothing was purchased.</p>";
+            } else {
+                cart.forEach((item) => {
+                    total += parseFloat(item.price.replace('£', ''));
+                    let itemElement = document.createElement('div');
+                    itemElement.classList.add('order-item');
+                    itemElement.innerHTML = `<p>${item.name} - ${item.price}</p>`;
+                    orderSummaryContainer.appendChild(itemElement);
+                });
+                orderSummaryContainer.innerHTML += `<p><strong>Total: £${total.toFixed(2)}</strong></p>`;
+            }
+        }
+
+        // Load order summary when the page is loaded
+        window.addEventListener("load", loadOrderSummary);
+    </script>
+</body>
+</html>
