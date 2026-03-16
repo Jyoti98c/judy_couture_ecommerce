@@ -50,7 +50,7 @@ Deployment Link
 https://jyoti98c.github.io/judy-couture-ecommerce/ 
 
 GITHUB repository
-
+https://github.com/Jyoti98c/judy-couture-ecommerce.git 
 
 
 Author
