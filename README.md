@@ -47,6 +47,9 @@ Possible improvements include:
 - Product review system
 
 Deployment Link
+https://jyoti98c.github.io/judy-couture-ecommerce/ 
+
+GITHUB repository
 
 
 
